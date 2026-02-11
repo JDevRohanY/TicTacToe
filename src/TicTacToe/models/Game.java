@@ -9,6 +9,10 @@ public class Game {
     private Player winner;
     private int nextPlayerMoveIndex;
 
+    public Game(Board board, List<Player> players){
+        this.board = board;
+        this.players = players;
+    }
     public Board getBoard() {
         return board;
     }
