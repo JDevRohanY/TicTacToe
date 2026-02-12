@@ -2,17 +2,21 @@ package src.TicTacToe.models;
 
 import src.TicTacToe.models.enums.PlayerType;
 
+import java.util.Scanner;
+
 public class Player {
     private String name;
     private Long id;
     private Symbol symbol;
     private PlayerType playerType;
+    private Scanner scanner;
 
     public Player(String name, Long id, Symbol symbol, PlayerType playerType) {
         this.name = name;
         this.id = id;
         this.symbol = symbol;
         this.playerType = playerType;
+        this.scanner = new Scanner(System.in);
     }
 
     public String getName() {
@@ -45,5 +49,15 @@ public class Player {
 
     public void setPlayerType(PlayerType playerType) {
         this.playerType = playerType;
+    }
+
+    public Move makeMove(Board board){
+        System.out.println("Please enter the row number where you want to make a move");
+        int row = scanner.nextInt();
+
+        System.out.println("Please enter the col number where you want to make a move");
+        int col = scanner.nextInt();
+
+        return new Move(this, new Cell(row, col));
     }
 }

@@ -9,6 +9,7 @@ import src.TicTacToe.models.Game;
 import src.TicTacToe.models.Player;
 import src.TicTacToe.models.Symbol;
 import src.TicTacToe.models.enums.BotDifficultyLevel;
+import src.TicTacToe.models.enums.GameState;
 import src.TicTacToe.models.enums.PlayerType;
 
 import java.util.ArrayList;
@@ -26,6 +27,20 @@ public class TicTacToeMain {
 
         //Build the game
         Game game = gameController.startGame(dimension, playerList);
+
+        while(gameController.getGameState(game).equals(GameState.IN_PROGRESS)){
+            gameController.displayBoard(game);
+
+            gameController.makeMove(game);
+        }
         gameController.displayBoard(game);
+
+        if (gameController.getGameState(game).equals(GameState.DRAW)) {
+            gameController.displayBoard(game);
+            System.out.println("Game has DRAWN.");
+        } else {
+            //Someone has WON the game.
+            System.out.println(gameController.getWinner(game).getName() + " has WON the game. Congratulations.");
+        }
     }
 }
